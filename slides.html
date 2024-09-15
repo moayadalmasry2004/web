@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slides</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            margin: 0;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 80%;
+            height: 80%;
+            border: 2px solid #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .back {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .back:hover {
+            background-color: #0056b3;
+        }
+
+        .options {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .options a {
+            display: block;
+            margin: 10px;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .options a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Slides for <span id="subject-title"></span></h1>
+    <iframe id="pdf-frame" src=""></iframe>
+
+    <div class="options" id="options-container">
+        
+        <a href="string.html" target="_blank">string</a>
+        <a href="loop.html" target="_blank">loop-if</a>
+        <a href="array.html" target="_blank">array 1d</a>
+        <a href="aseel.html" target="_blank">slide from basic to loop</a>
+
+    </div>
+
+    <a href="index.html" class="back">Back to Main Page</a>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const subject = urlParams.get('subject');
+        const title = document.getElementById('subject-title');
+        const iframe = document.getElementById('pdf-frame');
+        const optionsContainer = document.getElementById('options-container');
+
+        
+        title.textContent = subject ? subject.charAt(0).toUpperCase() + subject.slice(1) : 'Select a Subject';
+
+        
+        if (subject === 'c') {
+            iframe.style.display = 'none'; 
+            optionsContainer.style.display = 'block';
+        } else {
+            iframe.style.display = 'block'; 
+            optionsContainer.style.display = 'none';
+
+            if (subject === 'java 1') {
+                iframe.src = 'تلخيص جافا ( الاصدار الاولي ).pdf'; 
+            } else if (subject === 'java 2') {
+                iframe.src = ''; 
+            } else if (subject === 'digital') {
+                iframe.src = 'تلخيص ديجيتال.pdf'; 
+           
+            } else {
+                iframe.src = ''; 
+            }
+        }
+    </script>
+
+</body>
+</html>

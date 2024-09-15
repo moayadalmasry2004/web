@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            margin: 0;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        iframe {
+            width: 80%;
+            height: 80%;
+            border: 2px solid #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none; /* Hide iframe by default */
+            border-radius: 8px;
+        }
+
+        .back {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            display: inline-block;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .back:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        .back:active {
+            transform: translateY(1px);
+        }
+
+        .options {
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .options a {
+            display: block;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .options a:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        .options a:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Forms for <span id="subject-title"></span></h1>
+
+    <!-- Options for C -->
+    <div class="options" id="options-c">
+        <a href="mid.html" target="_blank">C Midterm</a>
+        <a href="https://drive.google.com/drive/u/0/folders/16Dz4dgnXTXNtYBBAiVxfMXHvihjmRGSm?fbclid=IwAR0Gm7QfAYwrRFI5Il6OjX3kLZXIVYdtGr7y0XYqYq09A5oBmIRIa3snAOo" target="_blank">C Form 2</a>
+    </div>
+
+    <!-- Options for Java 1 -->
+    <div class="options" id="options-java1">
+        <a href="Copy of 123QuizOutput.pdf" target="_blank">Quiz Output</a>
+        <a href="Copy of 123QuizErrors (1).pdf" target="_blank">Quiz Errors</a>
+        <a href="Copy of 123Midterm qustions (output&error&code).pdf" target="_blank">Midterm Questions</a>
+    </div>
+
+    <iframe id="pdf-frame" src=""></iframe>
+
+    <a href="index.html" class="back">Back to Main Page</a>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const subject = urlParams.get('subject');
+        const title = document.getElementById('subject-title');
+        const iframe = document.getElementById('pdf-frame');
+        const cOptions = document.getElementById('options-c');
+        const java1Options = document.getElementById('options-java1');
+
+        title.textContent = subject ? subject.charAt(0).toUpperCase() + subject.slice(1) : 'Select a Subject';
+
+        iframe.style.display = 'none';
+        cOptions.style.display = 'none';
+        java1Options.style.display = 'none';
+
+        if (subject === 'c') {
+            cOptions.style.display = 'block';
+        } else if (subject === 'java 1') {
+            java1Options.style.display = 'block'; 
+        } else if (subject === 'java 2') {
+            iframe.style.display = 'block';
+            iframe.src = 'أسئلة مقالية جافا 2 (1).pdf'; 
+        } else if (subject === 'digital') {
+            iframe.style.display = 'block';
+            iframe.src = '2-merged-numbered.pdf'; 
+        }
+    </script>
+
+</body>
+</html>

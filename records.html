@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            margin: 0;
+            padding: 20px;
+        }
+
+        a {
+            display: block;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 80%;
+            height: 400px;
+            border: 2px solid #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none; /* Hide iframe by default */
+        }
+
+        .back {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .back:hover {
+            background-color: #0056b3;
+        }
+
+        .options {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .options h1 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Video for <span id="subject-title"></span></h1>
+
+ 
+
+    <div class="options" id="java1options">
+        <h1>Java 1 Videos</h1>
+        <a href="https://drive.google.com/file/d/1zzvLY4yDcBj7K27dixEjvVgiDUviRBNq/view?usp=sharing" target="_blank">ch1-ch6</a>
+        <a href="https://drive.google.com/file/d/1AWmmjm1HfCfe7I-CnqwxePjTe7i5NLGU/view?usp=sharing" target="_blank">inheritance</a>
+        <a href="https://drive.google.com/file/d/1P_eHTYu5yWWIaJ4BZMmGImhXFUQFuiPF/view?usp=sharing" target="_blank">exception</a>
+        <a href="https://drive.google.com/file/d/1Zv1dZfMFP3JxfhT0FEHC1vbYOrkkQKy2/view?usp=sharing" target="_blank">ch(7+9+18)</a>
+        <a href="https://drive.google.com/file/d/1vo_lbq8_uV_Qe2x4seo4yP2FoddQe_Dj/view?usp=sharing" target="_blank">2D array</a>
+    </div>
+
+    <div class="options" id="java2options">
+        <h1>Java 2 Videos</h1>
+        <a href="https://drive.google.com/file/d/11CI_7Wr8CmvETl0HhFldLormPpPd1Gp_/view?usp=sharing" target="_blank">part 1</a>
+        <a href="https://drive.google.com/file/d/12B7TYXorUYlWENdEXdQW2R7R48ohzZ7N/view?usp=sharing" target="_blank">part 2</a>
+    </div>
+
+    <div class="options" id="options-digital">
+        <h1>Digital Videos</h1>
+        <a href="https://drive.google.com/file/d/16K7wA2Hj3e--rqIb4rAWf4xHxULZJrYp/view?usp=sharing" target="_blank">part 1</a>
+        <a href="https://drive.google.com/file/d/1E4TYXorUYlWMIFEXdqSR79p48ohxDo25/view?usp=sharing" target="_blank">part 2</a>
+        <a href="https://drive.google.com/file/d/11CI_7Wr8CmvETl0HhFldLormPpPd1Gp_/view?usp=sharing" target="_blank">part 3</a>
+    </div>
+   <a href="index.html" class="back">Back to Main Page</a>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const subject = urlParams.get('subject');
+            const title = document.getElementById('subject-title');
+            const iframe = document.getElementById('video-frame');
+            const java1Options = document.getElementById('java1options');
+            const java2Options = document.getElementById('java2options');
+            const digitalOptions = document.getElementById('options-digital');
+
+            title.textContent = subject ? subject.charAt(0).toUpperCase() + subject.slice(1) : 'Select a Subject';
+
+            java1Options.style.display = 'none';
+            java2Options.style.display = 'none';
+            digitalOptions.style.display = 'none';
+
+            if (subject === 'java 1') {
+                java1Options.style.display = 'block'; // Show Java 1 options
+            } else if (subject === 'java 2') {
+                java2Options.style.display = 'block'; // Show Java 2 options
+            } else if (subject === 'digital') {
+                digitalOptions.style.display = 'block'; // Show Digital options
+            } else if (subject === 'c') {
+                iframe.src = ''; // Set C video if available
+                iframe.style.display = 'block'; // Show iframe for C
+            } else {
+                iframe.style.display = 'none'; // Hide the iframe if no subject is selected
+            }
+        });
+    </script>
+
+</body>
+</html>

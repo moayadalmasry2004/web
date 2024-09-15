@@ -1,34 +1,117 @@
-<!doctype html>
-<html class="no-js" lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f0f0f0, #cce7ff);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+            z-index: 1;
+        }
 
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 2rem;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 2px solid #007bff;
+            margin-bottom: 20px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: #e9ecef;
+        }
+
+        select:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 8px rgba(0, 0, 255, 0.3);
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        a:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        a:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
-
 <body>
 
-  <!-- Add your site or application content here -->
-  <div class="visme_d" data-title="Weekly Newsletter Subscription" data-url="1jv8njz3-weekly-newsletter-subscription?fullPage=true" data-domain="forms" data-full-page="true" data-min-height="100vh" data-form-id="88438"></div><script src="https://static-bundles.visme.co/forms/vismeforms-embed.js"></script>
+    <div class="container">
+        <h1>Choose a Subject</h1>
+        <select id="subject-select" required>
+            <option value="">Select a subject</option>
+            <option value="c">C</option>
+            <option value="java 1">Java 1</option>
+            <option value="java 2">Java 2</option>
+            <option value="digital">Digital</option>
+        </select>
+        <br>
+        <a href="form.html">Forms</a>
+        <a href="slides.html">Slides</a>
+        <a href="records.html">Records</a>
+    </div>
 
-  <script src="js/app.js"></script>
+    <script>
+        document.getElementById('subject-select').addEventListener('change', function() {
+            const subject = this.value;
+            if (subject) {
+                const links = document.querySelectorAll('a');
+                links.forEach(link => {
+                    const url = new URL(link.href);
+                    url.searchParams.set('subject', subject);
+                    link.href = url.toString();
+                });
+            }
+        });
+    </script>
 
 </body>
-
 </html>
